@@ -5,6 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 
 const Voting = () => {
 
@@ -30,86 +31,59 @@ const Voting = () => {
 
   return(
     <>
-      <div className="flex justify-between">
+      <div className="grid gap-4 grid-cols-2 mb-4 border-bottom pb-10">
         <Card className={classes.root} variant="outlined">
-        <CardContent>
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-            From
-          </Typography>
-          <Typography variant="h5" component="h2">
-            Where
-          </Typography>
-          <Typography className={classes.pos} color="textSecondary">
-            When
-          </Typography>
-        </CardContent>
-      </Card>
-      <Card className={classes.root} variant="outlined">
-        <CardContent>
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Best proposition so far!
-          </Typography>
-          <Typography className={classes.pos} color="textSecondary">
-            title
-          </Typography>
-          <Typography variant="body2" component="p">
-            description
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>
-    </div>
-    <div className="p-2 flex-wrap">
-      <Card className={classes.root} variant="outlined">
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Best proposition so far!
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          title
-        </Typography>
-        <Typography variant="body2" component="p">
-          description
-        </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>
-      <Card className={classes.root} variant="outlined">
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Best proposition so far!
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          title
-        </Typography>
-        <Typography variant="body2" component="p">
-          description
-        </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>
-      <Card className={classes.root} variant="outlined">
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Best proposition so far!
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          title
-        </Typography>
-        <Typography variant="body2" component="p">
-          description
-        </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>
+          <CardContent>
+            <Typography className='pb-2' variant="h6">
+              Rules:
+            </Typography>
+            <Typography className='pb-2' component="p">
+              Where: online
+            </Typography>
+            <Typography className='pb-2' component="p">
+              When: 23/02/2021
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card className={classes.root} variant="outlined">
+          <CardContent>
+            <Typography className='pb-2' variant="h6">
+              Best proposition so far!
+            </Typography>
+            <Typography className='pb-2' component="p">
+              Title: Online Drinking Game
+            </Typography>
+            <Typography className='pb-2' component="p">
+              Description:
+            </Typography>
+            <Typography component="p">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </Typography>
+          </CardContent>
+          <CardActions className='flex justify-end'>
+            <StarBorderOutlinedIcon />
+          </CardActions>
+        </Card>
+      </div>
+    <div className="grid gap-4 grid-cols-2">
+        {[{ id: 1 }, { id: 2 }, { id: 3 }].map(idea => (
+          <Card key={idea.id} className={classes.root} variant="outlined">
+            <CardContent>
+              <Typography className='pb-2' component="p">
+                Title: Stip poker
+              </Typography>
+              <Typography className='pb-2' component="p">
+                Description:
+              </Typography>
+              <Typography component="p">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </Typography>
+            </CardContent>
+            <CardActions className='flex justify-end'>
+              <StarBorderOutlinedIcon />
+            </CardActions>
+          </Card>
+        ))}
     </div>
   </>
   )
