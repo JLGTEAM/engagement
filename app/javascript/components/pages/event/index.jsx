@@ -5,7 +5,7 @@ import Sidebar from '../../ui/Sidebar';
 import Voting from './voting';
 
 const Event = () => {
-  const [activeItem, setActiveItem] = useState('');
+  const [activeItem, setActiveItem] = useState(Ideas.name);
 
   const handleChange = (item) => {
     setActiveItem(item);

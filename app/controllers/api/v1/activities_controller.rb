@@ -11,6 +11,19 @@ module Api
       end
 
       def create
+        activity = Activity.new(activity_params)
+        activity.user = current_user
+        if activity.save
+          render json: ActivitySerializer.new(activity).serializable_hash.to_json
+        else
+          render json: { error: activity.errors.messages }, status: 422
+        end
+      end
+
+      private
+
+      def activity_params
+        params.permit(:title, :description, :event_id)
       end
     end
   end
