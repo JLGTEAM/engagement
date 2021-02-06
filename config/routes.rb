@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+
   root to: 'pages#home'
 
   namespace :api do
     namespace :v1 do
       resources :organizations, only: [:show] do
+        resources :users, only: [:index]
         resources :events, only: [:index, :create] do
           resources :activities, only: [:index, :create] do
             collection do
@@ -13,7 +18,6 @@ Rails.application.routes.draw do
            resources :votes, only: [:create, :destroy]
           end
         end
-
       end
     end
   end
