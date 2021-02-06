@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_05_191820) do
+ActiveRecord::Schema.define(version: 2021_02_06_081448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_activities_on_event_id"
+    t.index ["user_id"], name: "index_activities_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.date "ideation_start_date"
+    t.date "ideation_end_date"
+    t.date "voting_start_date"
+    t.date "voting_end_date"
+    t.date "guessing_start_date"
+    t.date "guessing_end_date"
+    t.date "event_date"
+    t.string "location"
+    t.integer "cost"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +54,29 @@ ActiveRecord::Schema.define(version: 2021_02_05_191820) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "bio"
+    t.integer "points", default: 0
+    t.boolean "manager", default: false
+    t.bigint "organization_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "activity_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_id"], name: "index_votes_on_activity_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
+  add_foreign_key "activities", "events"
+  add_foreign_key "activities", "users"
+  add_foreign_key "users", "organizations"
+  add_foreign_key "votes", "activities"
+  add_foreign_key "votes", "users"
 end
