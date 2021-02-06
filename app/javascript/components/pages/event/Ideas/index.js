@@ -65,9 +65,10 @@ const Ideas = () => {
           return (
             <ListItem key={value} button>
               <ListItemAvatar>
-                <Avatar
-                  alt={`Avatar n°${value + 1}`}
-                  src={`/static/images/avatar/${value + 1}.jpg`}
+                <img
+                  className="h-10 w-10 rounded-full"
+                  src={`https://eu.ui-avatars.com/api/?name=Jhon+Doe`}
+                  alt=""
                 />
               </ListItemAvatar>
               <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
