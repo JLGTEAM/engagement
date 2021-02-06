@@ -2,11 +2,11 @@ module Api
   module V1
     class ActivitiesController < ApplicationController
       # FOR TESTING API
-      skip_before_action :authenticate_user!, only: [ :index, :create ]
+      skip_before_action :authenticate_user!, only: [ :index, :create, :most_voted_idea ]
       protect_from_forgery with: :null_session
 
       def index
-        activities = Activity.all
+        activities = Activity.where(event_id: params[:event_id])
         render json: ActivitySerializer.new(activities).serializable_hash.to_json
       end
 
@@ -18,6 +18,12 @@ module Api
         else
           render json: { error: activity.errors.messages }, status: 422
         end
+      end
+
+      def most_voted_idea
+        ideas = Activity.where(event_id: params[:event_id])
+        most_voted = ideas.max { |a, b| a.votes_count <=> b.votes_count }
+        render json: ActivitySerializer.new(most_voted).serializable_hash.to_json
       end
 
       private
