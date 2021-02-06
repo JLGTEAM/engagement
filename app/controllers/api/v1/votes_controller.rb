@@ -7,7 +7,7 @@ module Api
 
       def create
         activity_id = params[:activity_id]
-        user_id = params[:user_id]
+        user_id = current_user.id
         new_vote = Vote.new(activity_id: activity_id, user_id: user_id)
         if new_vote.save
           render json: VoteSerializer.new(new_vote).serializable_hash.to_json

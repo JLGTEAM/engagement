@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       resources :organizations, only: [:show] do
         resources :events, only: [:index, :create] do
           resources :activities, only: [:index, :create] do
+            collection do
+              get :most_voted_idea
+            end
            resources :votes, only: [:create, :destroy]
           end
         end
