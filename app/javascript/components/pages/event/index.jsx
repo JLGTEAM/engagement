@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Guessing from './guessing';
 import Ideas from './Ideas';
+import Guessing from './guessing';
 import Sidebar from '../../ui/Sidebar';
 import Voting from './voting';
 
