@@ -5,7 +5,7 @@ import Sidebar from '../../ui/Sidebar';
 import Voting from './voting';
 
 const Event = () => {
-  const [activeItem, setActiveItem] = useState(Ideas.name);
+  const [activeItem, setActiveItem] = useState("Ideas");
 
   const handleChange = (item) => {
     setActiveItem(item);
@@ -14,9 +14,9 @@ const Event = () => {
   return (
     <>
       <Sidebar handleChange={handleChange}>
-        {activeItem === Ideas.name && <Ideas />}
-        {activeItem === Voting.name && <Voting />}
-        {activeItem === Guessing.name && <Guessing />}
+        {activeItem === "Ideas" && <Ideas />}
+        {activeItem === "Voting" && <Voting />}
+        {activeItem === "Guessing" && <Guessing />}
       </Sidebar>
     </>
   );
